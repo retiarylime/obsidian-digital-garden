@@ -326,7 +326,10 @@ export class RepositoryConnection {
 		});
 
 		const treeAssetPromises = files
-			.flatMap((x) => x.compiledFile[1].images)
+			.flatMap((x) => [
+				...x.compiledFile[1].images,
+				...x.compiledFile[1].audios,
+			])
 			.map(async (asset) => {
 				try {
 					const blob = await this.octokit.request(

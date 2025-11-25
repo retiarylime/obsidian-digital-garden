@@ -61,6 +61,9 @@ export default class PublishStatusManager implements IPublishStatusManager {
 		const remoteImageHashes =
 			await this.siteManager.getImageHashes(contentTree);
 
+		const remoteAudioHashes =
+			await this.siteManager.getAudioHashes(contentTree);
+
 		const marked = await this.publisher.getFilesMarkedForPublishing();
 
 		for (const file of marked.notes) {
@@ -90,6 +93,11 @@ export default class PublishStatusManager implements IPublishStatusManager {
 			remoteImageHashes,
 			marked.images,
 		);
+
+		const deletedAudioPaths = this.generateDeletedContentPaths(
+			remoteAudioHashes,
+			marked.audios,
+		);
 		// These might already be sorted, as getFilesMarkedForPublishing sorts already
 		publishedNotes.sort((a, b) => a.compare(b));
 		publishedNotes.sort((a, b) => a.compare(b));
@@ -102,6 +110,7 @@ export default class PublishStatusManager implements IPublishStatusManager {
 			changedNotes,
 			deletedNotePaths,
 			deletedImagePaths,
+			deletedAudioPaths,
 		};
 	}
 }
@@ -117,6 +126,7 @@ export interface PublishStatus {
 	changedNotes: Array<CompiledPublishFile>;
 	deletedNotePaths: Array<PathToRemove>;
 	deletedImagePaths: Array<PathToRemove>;
+	deletedAudioPaths: Array<PathToRemove>;
 }
 
 export interface IPublishStatusManager {

@@ -323,6 +323,7 @@ export default class DigitalGarden extends Plugin {
 					}
 
 					this.isPublishing = false;
+
 					if (audiosToDelete.length > 0) {
 						new Notice(
 							`Successfully deleted ${audiosToDelete.length} audios from your garden.`,

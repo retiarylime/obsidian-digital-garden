@@ -18,6 +18,8 @@ import {
 	AUDIO_PATH_BASE,
 	IMAGE_PATH_BASE,
 } from "../publisher/Publisher";
+import PublishPlatformConnectionFactory from "./PublishPlatformConnectionFactory";
+import { PublishPlatform } from "src/models/PublishPlatform";
 
 const logger = Logger.get("digital-garden-site-manager");
 export interface PathRewriteRule {

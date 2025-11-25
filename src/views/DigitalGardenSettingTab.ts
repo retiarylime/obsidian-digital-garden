@@ -14,11 +14,7 @@ export class DigitalGardenSettingTab extends PluginSettingTab {
 		super(app, plugin);
 		this.plugin = plugin;
 
-		if (
-			!this.plugin.settings.noteSettingsIsInitialized &&
-			this.plugin.settings.githubUserName &&
-			this.plugin.settings.githubRepo
-		) {
+		if (!this.plugin.settings.noteSettingsIsInitialized) {
 			const siteManager = new DigitalGardenSiteManager(
 				this.app.metadataCache,
 				this.plugin.settings,
